@@ -36,9 +36,8 @@ function addTodos(todos){
 
 function createTodo(){
 	var value = $("#todoInput").val()
-	$.post("/api/todos",{name: value})
+	$.post("/api/todos", { name: value })
 	.then(function(newTodo){
-		console.log(newTodo);
 		addTodo(newTodo)
 		$("#todoInput").val("")
 	})
@@ -50,12 +49,11 @@ function createTodo(){
 }
 
 function addTodo(todo){
-	var newTodo = $("<li class='task'>" + todo.name + "<span>X</span></li>")
-		console.log(todo._id, "from addtodo")
-		newTodo.data('id', todo._id)
-		newTodo.data('completed', todo.completed)
+	var newTodo = $("<li class='task'>" + todo.name + "<span>X</span></li>");
+		newTodo.data('id', todo._id);
+		newTodo.data('completed', todo.completed);
 		todo.completed ? newTodo.addClass("done") : newTodo
-		$(".list").append(newTodo)
+		$(".list").append(newTodo);
 }
 
 function removeTodo(todo){
@@ -67,7 +65,6 @@ function removeTodo(todo){
 		})
 		.then(function(mess){
 			todo.remove()
-			console.log(mess)
 		})
 		.catch(function(err){
 			console.log(err)
@@ -79,8 +76,6 @@ function updateTodo(todo){
 		let clickedId = todo.data('id')
 		let urlclicked = 'api/todos/' + clickedId
 		let updataData = {completed: isDone}
-		console.log(updataData);
-		console.log(urlclicked);
 		$.ajax({
 			method: 'PUT',
 			url: urlclicked,

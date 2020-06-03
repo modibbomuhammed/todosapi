@@ -1,25 +1,18 @@
 var db = require('../models');
 
 exports.getTodos = (req,res) => {
-	// res.send("Hello from the other side")
 	db.Todo.find()
 	.then(function(todos){
 		res.json(todos);
 	})
 	.catch(function(err){
-		console.log(err);
 		res.send(err);
-	})
+	});
 }
 
 exports.createTodo = (req,res) => {
-	// console.log(req);
-	// console.log(req.body)
-	// res.send("Hit the post route")
 	db.Todo.create(req.body)
 	.then(function(newTodo){
-		// res.redirect('/api/todos/');
-		console.log(newTodo);
 		res.status(201).json(newTodo);
 	})
 	.catch(function(err){

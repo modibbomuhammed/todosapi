@@ -20,11 +20,6 @@ app.get("/", function(req,res){
 	res.sendfile("index")
 })
 
-
-app.get("/happy", function(req,res){
-	res.send("{message: \" Whats up \"}")
-})
-
 app.listen(port, function(){
 	console.log(`Server is running on port ${port}`)
 })
